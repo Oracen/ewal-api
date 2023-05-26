@@ -3,13 +3,13 @@
 Main FastAPI app.
 """
 # -*- coding: utf-8 -*-
-from typing import List
+from typing import Dict, List
 
 from fastapi import FastAPI, Query
 
-from description import desc
-from helpers import emojis, passwd, random_users
-from pydantic_models import Emoji, Password, Person
+from .description import desc
+from .helpers import emojis, passwd, random_users
+from .pydantic_models import Emoji, Password, Person
 
 app = FastAPI(
     title="Something Random...",
@@ -27,14 +27,14 @@ async def random_persons(
         ge=1,
         le=50,
     )
-) -> List[Person]:
+) -> List[Dict]:
     """
     Get a random list of persons.
 
     The defautl is 5
 
     """
-    persons = random_users.create(iterations=num)
+    persons = [random_users]
     return persons
 
 
